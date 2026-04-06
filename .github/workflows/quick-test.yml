@@ -1,0 +1,29 @@
+name: Quick Test (for auto-merge testing)
+
+on:
+  pull_request:
+    branches:
+      - main
+      - master
+
+# Simple workflow to test auto-merge functionality
+# This will complete quickly so you can test the Harness webhook trigger
+
+jobs:
+  quick-check:
+    name: Quick Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Simple validation
+        run: |
+          echo "Running quick validation..."
+          sleep 5
+          echo "Validation passed!"
+
+      - name: Check passed
+        run: |
+          echo "All checks completed successfully"
+          echo "This check suite will trigger the Harness auto-merge webhook"
